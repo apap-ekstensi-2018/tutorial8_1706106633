@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+		<div th:replace="fragments/fragment :: header"></div>
+
+	    <div class="table-responsive">
+	        <table class="table table-bordered table-striped" id="myTable">
+	            <thead>
+	                <tr>
+	                    <th width="80px">No</th>
+	                    <th>NPM</th>
+	                    <th>Name</th>
+	                    <th>GPA</th>
+	                    <th>Cum Laude</th>
+	                    <th>Delete</th>
+	                    <th>Update</th>
+	                </tr>
+	            </thead>	        	
+	            <tbody>
+			    	<tr th:each="student,iterationStatus: ${students}">
+			               <td th:text="${iterationStatus.count}"></td>
+			               <td th:text="${student.npm}"></td>
+			               <td th:text="${student.name}"></td>
+			               <td th:text="${student.gpa}"></td>
+			               <td th:text="${student.gpa>=3.48} ? 'Cum Laude!' : 'Sangat Memuaskan!' "></td>
+			               <td>
+	       						<a th:href="'/student/update/' + ${student.npm}">Update Data</a><br/>
+			               </td>
+			               <td>
+						       	<a th:href="'/student/delete/' + ${student.npm}">Delete Data</a><br/>
+			               </td>
+					</tr>
+	            </tbody>
+	        </table>
+        </div>
+
+
+		<div th:replace="fragments/fragment :: footer"></div>
+
+    </body>
+</html>
